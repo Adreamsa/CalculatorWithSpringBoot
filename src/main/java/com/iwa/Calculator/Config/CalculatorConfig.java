@@ -1,5 +1,9 @@
-package com.iwa.Calculator;
+package com.iwa.Calculator.Config;
 
+import com.iwa.Calculator.Operation.Divide;
+import com.iwa.Calculator.Operation.Minus;
+import com.iwa.Calculator.Operation.Multiply;
+import com.iwa.Calculator.Operation.Sum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
