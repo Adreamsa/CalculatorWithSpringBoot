@@ -13,40 +13,51 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class CalculatorWithSpringBootApplication implements CommandLineRunner {
+/*
+    @Autowired
+    private Sum sum;
 
+    @Autowired
+    private Minus minus;
 
-	public static void main(String[] args) {
-		SpringApplication.run(CalculatorWithSpringBootApplication.class, args);
-	}
+    @Autowired
+    private Multiply multiply;
 
-	@Override
-	public void run(String... args) {
-		double a = 10;
-		double b = 5;
+    @Autowired
+    private Divide divide;
+*/
+    public static void main(String[] args) {
+        SpringApplication.run(CalculatorWithSpringBootApplication.class, args);
+    }
 
-		System.out.println("Suma: " + sum.operation(a, b));
-		System.out.println("Resta: " + minus.operation(a, b));
-		System.out.println("Multiplicación: " + multiply.operation(a, b));
-		System.out.println("División: " + divide.operation(a, b));
+    @Override
+    public void run(String... args) {
+        double a = 10;
+        double b = 5;
+        /*
+        System.out.println("Suma: " + sum.operation(a, b));
+        System.out.println("Resta: " + minus.operation(a, b));
+        System.out.println("Multiplicación: " + multiply.operation(a, b));
+        System.out.println("División: " + divide.operation(a, b));
+*/
 
+    }
 
-	}
+    @Bean
+    public CommandLineRunner listarBeans(ApplicationContext context) {
+        return args -> {
+            String paqueteBase = "com.iwa";  // Cambia esto al paquete base de tu proyecto
 
-	@Bean
-	public CommandLineRunner listarBeans(ApplicationContext context) {
-		return args -> {
-			String paqueteBase = "com.baeldung";  // Cambia esto al paquete base de tu proyecto
+            System.out.println("Beans registrados en el contexto de Spring por el usuario:");
+            for (String beanName : context.getBeanDefinitionNames()) {
+                // Obtener la clase del Bean
+                Class<?> beanType = context.getType(beanName);
 
-			System.out.println("Beans registrados en el contexto de Spring por el usuario:");
-			for (String beanName : context.getBeanDefinitionNames()) {
-				// Obtener la clase del Bean
-				Class<?> beanType = context.getType(beanName);
-
-				// Filtrar solo los Beans que pertenecen al paquete base del usuario
-				if (beanType != null && beanType.getPackageName().startsWith(paqueteBase)) {
-					System.out.println(beanName + " -> " + beanType.getName());
-				}
-			}
-		};
-	}
+                // Filtrar solo los Beans que pertenecen al paquete base del usuario
+                if (beanType != null && beanType.getPackageName().startsWith(paqueteBase)) {
+                    System.out.println(beanName + " -> " + beanType.getName());
+                }
+            }
+        };
+    }
 }
