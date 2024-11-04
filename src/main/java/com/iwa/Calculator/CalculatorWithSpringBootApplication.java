@@ -8,24 +8,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class CalculatorWithSpringBootApplication implements CommandLineRunner {
-/*
-    @Autowired
+
     private Sum sum;
-
-    @Autowired
+    private Divide divide;
     private Minus minus;
-
+//--------------------------------------------------------------------------------------
+    // Inyección de campo
     @Autowired
     private Multiply multiply;
-
+//--------------------------------------------------------------------------------------
+    // Constructor para inyectar el Bean Sum
     @Autowired
-    private Divide divide;
-*/
+    public CalculatorWithSpringBootApplication(Sum sum) {
+        this.sum = sum;
+    }
+//--------------------------------------------------------------------------------------
+    // Setter para inyectar el Bean Minus
+    @Autowired
+    public void setMinus(Minus minus) {
+        this.minus = minus;
+    }
+
+    // Setter para inyectar el Bean Divide
+    @Autowired
+    public void setDivide(Divide divide) {
+        this.divide = divide;
+    }
+//--------------------------------------------------------------------------------------
     public static void main(String[] args) {
         SpringApplication.run(CalculatorWithSpringBootApplication.class, args);
     }
@@ -34,16 +46,16 @@ public class CalculatorWithSpringBootApplication implements CommandLineRunner {
     public void run(String... args) {
         double a = 10;
         double b = 5;
-        /*
+
         System.out.println("Suma: " + sum.operation(a, b));
         System.out.println("Resta: " + minus.operation(a, b));
         System.out.println("Multiplicación: " + multiply.operation(a, b));
         System.out.println("División: " + divide.operation(a, b));
-*/
-
     }
+}
 
-    @Bean
+    /*
+@Bean
     public CommandLineRunner listarBeans(ApplicationContext context) {
         return args -> {
             String paqueteBase = "com.iwa";  // Cambia esto al paquete base de tu proyecto
@@ -60,4 +72,4 @@ public class CalculatorWithSpringBootApplication implements CommandLineRunner {
             }
         };
     }
-}
+     */
