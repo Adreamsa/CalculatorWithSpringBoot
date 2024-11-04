@@ -78,8 +78,6 @@ public class CalculatorWithSpringBootApplication implements CommandLineRunner {
                     continue;
                 default:
                     System.out.println("Adios");
-                    break;
-
             }
             break;
         }
